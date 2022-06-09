@@ -1,0 +1,57 @@
+<div class="container">
+
+    <form (submit)="onSubmit(form)" #form="ngForm">
+  
+      <div class="form-group">
+        <label>UserName</label>
+        <input class="form-control" type="text" #username  ngModel name="username" required>
+      </div>
+  
+      <div class="form-group">
+        <label>Email</label>
+        <input class="form-control" type="email" ngModel name="email" required email #email="ngModel">
+        <span *ngIf="!email.valid && email.touched">Please Enter Valid email</span>
+      </div>
+  
+      <div class="form-group">
+        <label>Password</label>
+        <input class="form-control" type="password" ngModel name="password">
+      </div>
+  
+      <div ngModelGroup="Address Data" #AddressData="ngModelGroup">
+        <div class="form-group">
+          <label>Address</label>
+          <input class="form-control" type="text" ngModel name="Address" required>
+        </div>
+        <div class="form-row">
+          <div class="col">
+            <label>Postal Code</label>
+            <input type="text" class="form-control" ngModel name="PostalCode">
+          </div>
+          <div class="col">
+            <label>Area</label>
+            <input type="text" class="form-control" ngModel name="Area">
+          </div>
+        </div>
+        <span *ngIf="!AddressData.valid && AddressData.touched">Please enter valid details</span>
+      </div>
+  
+      <div class="form-group">
+        <label for="activity">Choose</label>
+        <select name="activity" id="activity" ngModel class="form-control">
+          <option value="cricket">Whats up cricket</option>
+          <option value="football">Whats up football</option>
+        </select>
+      </div>
+      <div class="radio" *ngFor="let gender of genders">
+        <label >
+          <input type="radio" name="gender" ngModel [value]="gender">
+          {{gender}}
+        </label>
+      </div>
+  
+      <button [disabled]="!form.valid" type="submit" class="btn btn-primary">Submit</button>
+  
+    </form>
+  
+  </div>

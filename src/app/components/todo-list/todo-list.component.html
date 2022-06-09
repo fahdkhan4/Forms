@@ -1,0 +1,28 @@
+<div class="container list-box details-list">
+    <h1 class="main_heading">TODO List</h1>
+
+    <form [formGroup]="todo_list" (submit)="onSubmit()">
+        <div class="form-group" id="alignment">
+            <input placeholder="Things you want to do today !" class="form-control" formControlName="user_detail" type="text">
+        </div>
+        <button type="submit" class="btn btn-secondary" [disabled]="disable_SubmitButton()">Submit</button>
+    </form>
+
+    <div *ngFor="let arrayitem of local_array">
+        <p class="list-border">
+            <input type="checkbox" name="checkbox">
+            <input class="show_items" type="text" name="edit_value" #editingvalue [disabled]="edit_activity" value={{arrayitem}}>
+            <button type="button" class="btn btn-success btn-sm edit-btn" (click)="edit_Or_Done(arrayitem,editingvalue.value)">{{edit_button}}</button>
+            <button (click)="delete_item(arrayitem)" type="button" class="btn btn-danger btn-sm delete-btn">Delete</button>
+        </p>
+    </div>
+    
+    <div  *ngIf="onDetails_Check()">
+       <h2 class="no-activities">No Activities Right Now</h2>
+    </div>
+    <div *ngIf="onDetails_Check() == false">
+        <button class="btn btn-warning btn-block">Clear Completed</button>
+    </div>
+    
+</div>
+
